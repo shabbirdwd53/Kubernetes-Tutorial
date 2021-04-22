@@ -1,0 +1,24 @@
+# https://kubernetes.io/docs/concepts/services-networking/ingress/
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - host: dcbapp.com
+    http:
+      paths:
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: user-service-svc
+            port:
+              number: 80
+      - path: /departments
+        pathType: Prefix
+        backend:
+          service:
+            name: department-service-svc
+            port:
+              number: 80
